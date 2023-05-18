@@ -1,0 +1,36 @@
+CREATE TABLE Kitaplar (
+  KitapID INT PRIMARY KEY,
+  KitapAdı VARCHAR(255),
+  YazarID INT,
+  KategoriID INT,
+  FOREIGN KEY (YazarID) REFERENCES Yazarlar(YazarID),
+  FOREIGN KEY (KategoriID) REFERENCES KitapKategorileri(KategoriID)
+);
+
+CREATE TABLE Uyeler (
+  UyeID INT PRIMARY KEY,
+  UyeAdı VARCHAR(255),
+  UyeSoyad VARCHAR(255),
+  Telefon VARCHAR(20)
+);
+
+CREATE TABLE KitapKategorileri (
+  KategoriID INT PRIMARY KEY,
+  KategoriAdı VARCHAR(255)
+);
+
+CREATE TABLE Yazarlar (
+  YazarID INT PRIMARY KEY,
+  YazarAdı VARCHAR(255),
+  YazarSoyad VARCHAR(255)
+);
+
+CREATE TABLE OduncAlinanKitaplar (
+  OduncID INT PRIMARY KEY,
+  UyeID INT,
+  KitapID INT,
+  OduncTarihi DATE,
+  TeslimTarihi DATE,
+  FOREIGN KEY (UyeID) REFERENCES Uyeler(UyeID),
+  FOREIGN KEY (KitapID) REFERENCES Kitaplar(KitapID)
+);
